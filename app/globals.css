@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #003152;
+}
+h1{
+    color: white;
+    font-size: 5rem;
+    margin-bottom: 3rem;
+}
+
+/* header */
+.headerSection {
+    display: flex;
+    position: absolute;
+    justify-content: space-around;
+    top: 0;
+    background-color: #7C3626;
+    width: 100%;
+    align-items: center;
+}
+a{
+    color: white;
+    font-size: 2rem;
+    padding: 0.25rem;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* login page */
+.loginSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.loginMain{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    width: 30vw;
+}
+input{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 2rem !important;
+    background-color: #003152 !important;
+    border: none;
+    border-bottom: 3px solid white;
+    color: white !important;
+    padding-left: 1rem;
+}
+input:focus{
+    outline: none;
+}
+button{
+    font-size: 1.5rem;
+    color: #FFFF33;
+    width: 50%;
+    border: 2px solid #FFFF33;
+    border-radius: 100px;
+    padding: 0.25rem;
+    background: none;
+    margin-top: 2rem;
+}
+button:hover{
+    cursor: pointer;
+}
+
+/* home page */
+.homeSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+.homeTitle{
+    margin-top: 2rem;
+}
+
+/* profile page */
+.profileTitle{
+    margin-top: 5rem;
+}
+.profileSection{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+.profileInfo{
+    color: white;
+}
