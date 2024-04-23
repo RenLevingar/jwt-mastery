@@ -12,7 +12,6 @@ export default async function Profile() {
       <main className="profileMain">
         <h1 className="profileTitle">Your Profile</h1>
         <h2 className="profileInfo">Name: {user.name}</h2>
-        <h2 className="profileInfo">Email: {user.email}</h2>
         <form action={async (formdata)=>{
           'use server'
           await logout()

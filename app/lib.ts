@@ -3,6 +3,23 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
+// gets all users
+const fetchUsers = async () => {
+    try {
+      const usersData = await fetch('http://localhost:9000/users', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return usersData.json();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchUsers();
+
 //make your secret
 const secretKey = 'secret';
 const key = new TextEncoder().encode(secretKey);
@@ -23,20 +40,23 @@ export async function decrypt(input: string): Promise<any> {
 }
 
 export async function login(formData: FormData) {
+    let users = await fetchUsers();
+    // console.log(users)
     // Verify credentials && get the user
 
-    const user = {email: formData.get("email"),password:formData.get('password'), name:"John"};
-    if(user.email !== process.env.USER_EMAIL || user.password !== process.env.USER_PASSWORD){
-        return false;
-        
+    const user = {name: formData.get("name"),password:formData.get('password')};
+    console.log("Check")
+    for (let i = 0; i < users.x.length; i++) {
+        console.log("User List: "+ users.x[i].name);
+        if (users.x[i].name === user.name && users.x[i].password === user.password) {
+            console.log("User List: "+ users.x[i]);
+            // Credentials match, return true to indicate successful login
+            const expires = new Date(Date.now() + 10 * 1000);
+            const session = await encrypt({ user, expires });
+            cookies().set("session", session, { expires, httpOnly: true });
+            return true;
+        }
     }
-    // Create the session
-    const expires = new Date(Date.now() + 10 * 1000);
-    const session = await encrypt({ user, expires});
-
-    // Save the sessioin  in a cookie
-    cookies().set("session", session, { expires, httpOnly: true});
-    return true;
 }
 
 export async function logout() {
