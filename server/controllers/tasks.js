@@ -17,11 +17,11 @@ const createPeople = async(req,res) => {
     try {
         userId = await PEOPLE.find({});
         const { name } = req.body; 
-        const { age } =req.body;
-        const { email } = req.body;
+        // const { age } =req.body;
+        // const { email } = req.body;
         const { password } = req.body;
         console.log(password)
-        await PEOPLE.create({name: name, age: age, email: email, password: password, id: userId.length+1});
+        await PEOPLE.create({name: name, password: password, id: userId.length+1});
         let answer = await PEOPLE.find({})
         res.json(answer);
      } catch (error) {

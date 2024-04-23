@@ -45,9 +45,7 @@ export async function login(formData: FormData) {
     // Verify credentials && get the user
 
     const user = {name: formData.get("name"),password:formData.get('password')};
-    console.log("Check")
     for (let i = 0; i < users.x.length; i++) {
-        console.log("User List: "+ users.x[i].name);
         if (users.x[i].name === user.name && users.x[i].password === user.password) {
             console.log("User List: "+ users.x[i]);
             // Credentials match, return true to indicate successful login
@@ -57,6 +55,38 @@ export async function login(formData: FormData) {
             return true;
         }
     }
+}
+
+// export async function signup(formData: FormData) {
+//     let users = await fetchUsers();
+//     const user = {name: formData.get("name"),password:formData.get('password')};
+//     for(let i=0; i<users.x.length; i++){
+//         if(users.x[i].name === user.name){return false}
+//     }
+// }
+
+export async function signup(formData: FormData) {
+    let users = await fetchUsers();
+    const newUser = {name: formData.get("name"), password: formData.get('password')};
+    for (let i = 0; i < users.x.length; i++) {
+        if (users.x[i].name === newUser.name) {
+            return false;
+        }
+    }
+    // users.x.push(newUser);
+    try {
+        const usersData = await fetch('http://localhost:9000/users', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return usersData.json();
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+
 }
 
 export async function logout() {

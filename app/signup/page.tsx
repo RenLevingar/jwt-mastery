@@ -1,16 +1,13 @@
 "use client"
 
-import { redirect } from "next/navigation";
-import {login} from './lib';
+// import { redirect } from "next/navigation";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import {signup} from '../lib';
+import { redirect } from "next/navigation";
 
-export default function Login() {
+export default function Signup() {
   const [users, setUsers] = useState([]);
-  // const [formData, setFormData] = useState({
-  //   name: '',
-  //   password: ''
-  // });
 
   useEffect(() => {
     // gets all of the users
@@ -39,11 +36,11 @@ export default function Login() {
   return (
     <section className="loginSection">
       <form  autoComplete="off" action={async (formdata)=>{
-        const success = await login(formdata);
-        if(success){redirect('/home')}else{alert("Wrong email/password")}
+        const success = await signup(formdata);
+        if(success){redirect('/')}else{alert("This user already exist")}
       }}>
         <main className="loginMain">
-          <h1>Login</h1>
+          <h1>Signup</h1>
           <input type="text" 
             name="name" 
             id="name" 
@@ -52,8 +49,8 @@ export default function Login() {
             name="password" 
             id="password" 
             placeholder="Password"/>
-          <button type="submit">Login</button>
-          <Link className="accountLink" href="/signup">Don't have an account? Signup</Link>
+          <button type="submit">Signup</button>
+        <Link className="accountLink" href="/">Already have an account? Log in</Link>
         </main>
       </form>
     </section>
