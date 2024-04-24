@@ -1,3 +1,25 @@
+
+# Ren Levingar
+
+### Description 
+This is an authentication webstie that uses JWT to access a MongoDB database and let the user into the website.
+
+### Setup
+Install everything in both the app folder as well as the server side.
+
+### Initialize
+Use the terminal command "npm run dev" to begin the program. Note: make sure you are in the right directory.
+
+### style.css
+There is basic styling for each the form, input, and button.
+
+
+## Authors
+
+- [@RenLevingar](https://github.com/RenLevingar) - Ren
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

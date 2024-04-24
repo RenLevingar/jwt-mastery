@@ -76,10 +76,9 @@ export async function signup(formData: FormData) {
     // users.x.push(newUser);
     try {
         const usersData = await fetch('http://localhost:9000/users', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        method: 'POST',
+        body: JSON.stringify(newUser),
+        headers: {'Content-Type': 'application/json',},
       });
       return usersData.json();
     } catch (error) {
